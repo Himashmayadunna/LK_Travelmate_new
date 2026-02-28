@@ -1,9 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  late final FirebaseAuth _auth;
+  late final FirebaseFirestore _firestore;
+  bool _initialized = false;
+
+  AuthService() {
+    try {
+      _auth = FirebaseAuth.instance;
+      _firestore = FirebaseFirestore.instance;
+      _initialized = true;
+    } catch (e) {
+      debugPrint('AuthService: Firebase not ready — $e');
+      _initialized = false;
+    }
+  }
 
   // SIGN UP
   Future<User?> signUp({
@@ -11,6 +24,10 @@ class AuthService {
     required String email,
     required String password,
   }) async {
+    if (!_initialized) {
+      throw Exception('Firebase is not initialized. Check your Firebase configuration.');
+    }
+
     // 1) Create user in Firebase Auth (throws FirebaseAuthException on failure)
     UserCredential userCredential =
         await _auth.createUserWithEmailAndPassword(
@@ -45,6 +62,9 @@ class AuthService {
     required String email,
     required String password,
   }) async {
+    if (!_initialized) {
+      throw Exception('Firebase is not initialized. Check your Firebase configuration.');
+    }
     // Throws FirebaseAuthException on failure — let it propagate
     UserCredential userCredential =
         await _auth.signInWithEmailAndPassword(
@@ -57,11 +77,13 @@ class AuthService {
 
   // LOGOUT
   Future<void> signOut() async {
+    if (!_initialized) return;
     await _auth.signOut();
   }
 
   // GET CURRENT USER
   User? getCurrentUser() {
+    if (!_initialized) return null;
     return _auth.currentUser;
   }
 

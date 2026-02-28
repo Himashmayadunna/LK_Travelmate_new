@@ -18,7 +18,7 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
   } catch (e) {
-    // Already initialized — safe to ignore
+    debugPrint('Firebase initialization failed: $e');
   }
 
   SystemChrome.setSystemUIOverlayStyle(

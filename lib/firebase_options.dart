@@ -3,16 +3,13 @@ import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 /// Default [FirebaseOptions] for the current platform.
-/// Generated manually from google-services.json.
+/// Derived from google-services.json.
 ///
 /// To regenerate, run: `flutterfire configure`
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -45,10 +42,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBLziuWGFMK4nq_eG469pBdN_srEa8GYvQ',
-    appId: '1:62501783126:android:10d4fed492d1ac16e29df7',
-    messagingSenderId: '62501783126',
-    projectId: 'authfirebase-3ae23',
-    storageBucket: 'authfirebase-3ae23.firebasestorage.app',
+    apiKey: 'AIzaSyBXew8solJQ4vPhXWNOvaWDaUYdKDN5phQ',
+    appId: '1:700359894258:android:c39ded849394af9d6e5c6b',
+    messagingSenderId: '700359894258',
+    projectId: 'lktravelmate',
+    storageBucket: 'lktravelmate.firebasestorage.app',
+  );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyBLFFCQFsPMLPyBXn8euk_lsuDzdIJKtKk',
+    appId: '1:700359894258:web:158221ee478c4f646e5c6b',
+    messagingSenderId: '700359894258',
+    projectId: 'lktravelmate',
+    authDomain: 'lktravelmate.firebaseapp.com',
+    storageBucket: 'lktravelmate.firebasestorage.app',
+    measurementId: 'G-HFDHCV7EQD',
   );
 }
