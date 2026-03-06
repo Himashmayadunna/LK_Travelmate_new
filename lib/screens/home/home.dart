@@ -276,8 +276,8 @@ class _HomeScreenState extends State<HomeScreen> {
       child: AIRecommendationCard(
         title: 'Discover the Pearl of\nthe Indian Ocean',
         subtitle: 'Personalized just for you',
-        imageUrl:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Sigiriya_%28Lion_Rock%29%2C_Sri_Lanka.jpg/1280px-Sigiriya_%28Lion_Rock%29%2C_Sri_Lanka.jpg',
+        imageUrl: '',
+        assetImage: 'assests/shu-gen-Sri-Lanka-on-wooden-sign-269107001-1440x823-1.jpg',
         onTap: () => _openAIChat(
           initialPrompt: 'Recommend the top must-visit destinations in Sri Lanka for a first-time traveler',
         ),
